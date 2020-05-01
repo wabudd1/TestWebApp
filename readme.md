@@ -1,4 +1,27 @@
-﻿# Instructions
+﻿# Notes on Coding Tasks by Marco Costa 5/1/2020
+I just wanted to document the process I went through while working on this small coding assignment. I tried to
+keep all functions and handling of data as close to what you started. I am very flexible and open to different 
+achitectures or styles. So if you are looking for a MVVC pattern as opposed to MVC, I can always be flexible and am
+ALWAYS looking for suggestions or criticisms on style and best practices.
+
+I was not 100% sure about how you wanted the mock db to be handled and how permanent you wanted it to be. So please let
+me know if you want the data manipulated in a different way and I can attempt to do that. Also, for the sake of getting
+things up and running on time, some code is not complete. For example, completely validating input and error handling.
+
+Here are the coding challenge steps I finished:
+* Create a View Model 
+    * This is a pretty straightforward View to the database. I did not include the "Id" property in the table 
+    as normally that would create some security issues.
+* Create a submission form to add a new user
+    * This part gave me the most trouble as I do not have a ton of experience with partial postbacks. Also, 
+    I realize that the way I am handling HTML generation for updating the DOM, but it was the best way I 
+    could think of in the time I had. I would love to hear a best practice solution for this.
+* Implement a method that returns a Fibonnacci sequence oout to 50 iterations and log output to NLog.
+    * This was really straightforward. The log file is in the logs folder with filename: 2020-05-01.log
+
+## I just wanted to say thank you for this opportunity. I enjoyed speaking with you and look forward to the possibility of working together!
+
+# Instructions
 * These instructions don't assume you know everything, so skip steps under the Prep section if you feel it appropriate
 * Google is your friend, but if you get stuck, feel free to ask questions
 * If you do get completely stuck on something, skip it and submit what you *are* able to do
