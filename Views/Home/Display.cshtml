@@ -1,0 +1,35 @@
+@model TestWebApp.Data.DataRepository
+
+
+@{
+    ViewBag.Title = "Display";
+}
+
+<h2>Display</h2>
+
+@foreach (var i in TestWebApp.Data.DataRepository.GetAllUsers())
+{
+    //<li>User @i</li>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>@i.Id</td>
+        </tr>
+        <tr>
+            <td>Name</td>
+            <td>@i.Name</td>
+        </tr>
+        <tr>
+            <td>Date</td>
+            <li>@i.DateModified</li>
+        </tr>
+        <tr>
+            <td>Is Active</td>
+            <td>@i.IsActive</td>
+        </tr>
+
+    </table>
+
+}
+
+@Html.ActionLink("Home", "Index");

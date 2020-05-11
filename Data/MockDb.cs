@@ -30,6 +30,12 @@ namespace TestWebApp.Data
 
         }
 
+        public void AddUser(User user)
+        {
+            Users.Add(user);
+
+        }
+
         public void Dispose()
         {
             IsDisposed = true;

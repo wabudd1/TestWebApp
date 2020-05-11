@@ -19,9 +19,17 @@ namespace TestWebApp.Data
         }
 
         // TODO:  Implement me.  Add return type and parameter(s) if needed.
-        public void AddUser()
+        public void AddUser(User user)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+
+            using (MockDb db = new MockDb())
+            {
+                db.AddUser(user);
+
+            }
+
+
         }
 
     }
