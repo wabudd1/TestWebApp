@@ -17,9 +17,17 @@ namespace TestWebApp.BLL
         }
 
         // TODO:  Implement me.  Add return type and parameter(s) if needed.
-        public void AddUser()
+        public List<User> AddUser(string userName)
         {
-            throw new NotImplementedException();
+            var newUser = new User()
+            {
+                Id = 12345,
+                Name = userName,
+                DateModified = DateTime.Now,
+                IsActive = true
+            };
+
+            return DataRepository.AddUser(newUser);
         }
 
         // TODO:  Implement me.  Add return type and parameter(s) if needed.

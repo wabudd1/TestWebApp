@@ -18,10 +18,14 @@ namespace TestWebApp.Data
             }
         }
 
-        // TODO:  Implement me.  Add return type and parameter(s) if needed.
-        public void AddUser()
+        public static List<User> AddUser(User newUser)
         {
-            throw new NotImplementedException();
+            using (MockDb db = new MockDb())
+            {
+                db.Users.Add(newUser);
+
+                return db.Users.ToList();
+            }
         }
 
     }
