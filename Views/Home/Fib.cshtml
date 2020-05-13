@@ -1,0 +1,12 @@
+﻿@model TestWebApp.Models.ViewModels.FibViewModel
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            @foreach (var num in Model.Sequence)
+            {
+                <em>@num</em><br />
+            }
+        </div>
+    </div>
+</div>

@@ -30,10 +30,17 @@ namespace TestWebApp.BLL
             return DataRepository.AddUser(newUser);
         }
 
-        // TODO:  Implement me.  Add return type and parameter(s) if needed.
-        public void GetFibonacci()
+        public User AddUserButJquery(string username)
         {
-            throw new NotImplementedException();
+            // would normally add to db but am lazy rn
+
+            return new User()
+            {
+                Id = 1234567,
+                Name = username,
+                DateModified = DateTime.Now,
+                IsActive = true
+            };
         }
     }
 }

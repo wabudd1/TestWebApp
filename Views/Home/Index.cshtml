@@ -7,9 +7,11 @@
             {
                 @Html.LabelFor(m => m.NewUserName)
                 <span>&nbsp;</span>
-                @Html.TextBoxFor(m => m.NewUserName)
+                @Html.TextBoxFor(m => m.NewUserName, new { Id = "TextBox" })
                 <input type="submit" class="btn btn-primary" value="Submit" />
+                <button id="ajaxButton" type="button" class="btn btn-danger">Ajax Submit</button>
             }
+            <br />
         </div>
     </div>
     <div class="row">
@@ -56,3 +58,31 @@
         </div>
     </div>
 </div>
+
+@section scripts
+{
+    <script>
+        $(document).on('click', '#ajaxButton', function (e) {
+            var data = $('#TextBox').val()
+            $.ajax({
+                url: '/Home/NewUserButJquery',
+                data: { 'newUsername': data },
+                type: 'POST',
+                cache: false,
+                success: function (result) {
+                    var newRow = '<tr><td>' + result.Id + '</td>';
+                    newRow += '<td>' + result.Name + '</td>';
+                    newRow += '<td>' + result.DateModified + '</td>';
+                    newRow += '<td>' + result.IsActive + '</td></tr>';
+                    $('table tbody').append(newRow);
+                },
+                complete: function () {
+                    // dss
+                },
+                error: function () {
+                    // dss
+                }
+            });
+        });
+    </script>
+}
