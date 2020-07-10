@@ -13,21 +13,19 @@ namespace TestWebApp.Data
         public MockDb()
         {
             IsDisposed = false;
-            var random = new Random(1090293801);
 
             Users = new List<User>();
-            
+
             for (int i = 0; i < 10; i++)
             {
                 Users.Add(new User()
                 {
-                    Id = random.Next(1, 100) * i,
+                    Id = i + 1,
                     Name = $"User Name {i}",
                     DateModified = DateTime.Now,
                     IsActive = true
                 });
             }
-
         }
 
         public void Dispose()

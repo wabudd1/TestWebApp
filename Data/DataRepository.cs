@@ -8,21 +8,34 @@ namespace TestWebApp.Data
 {
     public class DataRepository
     {
+        private static List<User> UserList = new List<User>();
+
         public static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
         public static List<User> GetAllUsers()
         {
-            using (MockDb db = new MockDb())
+            if (UserList.Count == 0)
             {
-                return db.Users;
+                using (MockDb db = new MockDb())
+                {
+                    UserList.AddRange(db.Users);
+                }
             }
+            return UserList;
         }
 
-        // TODO:  Implement me.  Add return type and parameter(s) if needed.
-        public void AddUser()
+        public static void AddUser(User user)
         {
-            throw new NotImplementedException();
+            int Id = 0;
+            foreach (User u in UserList)
+            {
+                // Find the biggest Id used so far.
+                Id = Math.Max(Id, u.Id);
+            }
+            // Biggest Id used so far plus 1.
+            user.Id = Id + 1;
+            user.DateModified = DateTime.Now;
+            UserList.Add(user);
         }
-
     }
 }

@@ -1,0 +1,14 @@
+﻿@model IEnumerable<string>
+
+@{
+    ViewBag.Title = "Fibonacci";
+}
+
+<h2>Fibonacci Sequence</h2>
+
+@foreach (var item in Model)
+{
+    <span class="badge badge-primary">
+        @Html.DisplayFor(modelItem => item)
+    </span>
+}
