@@ -18,10 +18,15 @@ namespace TestWebApp.Data
             }
         }
 
-        // TODO:  Implement me.  Add return type and parameter(s) if needed.
-        public void AddUser()
+        public static User AddUser(string name, int id)
         {
-            throw new NotImplementedException();
+            return new User()
+            {
+                Id = id,
+                Name= name,
+                DateModified = DateTime.Now,
+                IsActive = true,
+            };
         }
 
     }
