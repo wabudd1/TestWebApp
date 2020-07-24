@@ -1,0 +1,102 @@
+﻿@model IEnumerable<TestWebApp.Data.User>
+
+@{
+    ViewBag.Title = "Table";
+}
+<script>
+    function createUser() {
+        $.post("/Home/CreateUser", { name: $('#name').val(), id: $('#Id').val() }, function (data) {
+            $('tr:last').after(`<tr>
+            <td>
+                ${data.Name}
+            </td>
+            <td>
+                ${data.Id}
+            </td>
+            <td>
+                <input ${data.IsActive ? 'checked="checked"' : null} class="check-box" disabled="disabled" type="checkbox" />
+            </td>
+            <td>
+                ${data.DateModified}
+            </td>
+        </tr>`)
+
+            swapVisible(true);
+        })
+    }
+
+    function swapVisible(showButtonOrForm) {
+        if (showButtonOrForm) {
+            $('#createUserButton').show();
+            $('#form').hide();
+            $('div input').val('');
+        }
+        else {
+            $('#createUserButton').hide();
+            $('#form').show();
+        }
+    }
+
+    function getFib() {
+        $.post("/Home/GetFibonacci", null, function (data) {
+            $('#fib').text(data.toString().replace(/,/g ,", "));
+        });
+    }
+</script>
+
+<h2>Table</h2>
+
+<button id="createUserButton" onclick="swapVisible(false)">Create User</button>
+<div id="form" style="display:none">
+    <label for="name">Name:</label><br>
+    <input type="text" id="name" name="name"><br>
+    <label for="Id">Id:</label><br>
+    <input type="number" id="Id" name="id"><br><br>
+    <button onclick="createUser()">Create User</button>
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateModified)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateModified)
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div class=".container">
+    <button onclick="getFib()">Generate Fib</button>
+    <div class=".container" id="fib" style="display:block"></div>
+</div>
+
+
+
+

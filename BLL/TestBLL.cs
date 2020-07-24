@@ -16,16 +16,27 @@ namespace TestWebApp.BLL
             return DataRepository.GetAllUsers();
         }
 
-        // TODO:  Implement me.  Add return type and parameter(s) if needed.
-        public void AddUser()
+        public User AddUser(string name, int id)
         {
-            throw new NotImplementedException();
+            return DataRepository.AddUser(name, id);
         }
 
         // TODO:  Implement me.  Add return type and parameter(s) if needed.
-        public void GetFibonacci()
+        public long[] GetFibonacci()
         {
-            throw new NotImplementedException();
+            var sequence = new long[50];
+            sequence[0] = 0;
+            sequence[1] = 1;
+
+            for (var i = 2; i < 50; i++)
+                sequence[i] = sequence[i - 1] + sequence[i - 2];
+
+            var logString = string.Empty;
+            foreach (var num in sequence)
+                logString += num + ", ";
+
+            logger.Debug(logString);
+            return sequence;
         }
     }
 }
