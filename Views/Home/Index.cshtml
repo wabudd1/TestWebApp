@@ -1,31 +1,112 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
+﻿@model List<TestWebApp.Data.User>
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+            .tab button {
+                background-color: inherit;
+                float: left;
+                border: none;
+                outline: none;
+                cursor: pointer;
+                padding: 14px 16px;
+                transition: 0.3s;
+                font-size: 17px;
+            }
+
+                .tab button:hover {
+                    background-color: #ddd;
+                }
+
+                .tab button.active {
+                    background-color: #ccc;
+                }
+
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+    </style>
+</head>
+<body>
+
+
+
+
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'viewAll')">View All</button>
+        <button class="tablinks" onclick="openTab(event, 'addUser')">Add User</button>
+        <button class="tablinks" onclick="openTab(event, 'fibSequence')">Fibonacci</button>
+
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+
+    <div id="viewAll" class="tabcontent">@(Html.Action ("ViewAll"))</div>
+
+    <div id="addUser" class="tabcontent">
+        <h3>Add a New User</h3>@(Html.Action("AddUser"))
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+
+    <div id="fibSequence" class="tabcontent">
+        <h3>Fibonacci Sequence</h3>@(Html.Action("Fibonacci"))
+
+
     </div>
-</div>
+
+
+    <script>
+        function openTab(evt, name) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(name).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+
+    </script>
+    <script>
+
+        function jQueryAjaxPost(form) {
+
+            $.ajax({
+                type: 'POST',
+                url: form.action,
+                data: new FormData(form),
+                success: function (response) {
+                    $("#viewAll").html(response);
+                }
+        );
+        }
+
+        return false;
+};
+    </script>
+
+    <script src="~/Scripts/Scripts.js"></script>
+
+</body>
+</html>
+
+

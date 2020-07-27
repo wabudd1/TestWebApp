@@ -10,6 +10,9 @@ namespace TestWebApp.Data
     {
         public static readonly Logger logger = LogManager.GetCurrentClassLogger();
 
+        static private List<User> Users = new List<User>();
+
+
         public static List<User> GetAllUsers()
         {
             using (MockDb db = new MockDb())
@@ -19,9 +22,9 @@ namespace TestWebApp.Data
         }
 
         // TODO:  Implement me.  Add return type and parameter(s) if needed.
-        public void AddUser()
+        public static void AddUser(User newUser)
         {
-            throw new NotImplementedException();
+            Users.Add(newUser);
         }
 
     }
