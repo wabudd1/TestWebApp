@@ -10,6 +10,9 @@ namespace TestWebApp.Data
         public bool IsDisposed { get; set; }
         public List<User> Users { get; set; }
 
+
+
+
         public MockDb()
         {
             IsDisposed = false;
@@ -26,13 +29,21 @@ namespace TestWebApp.Data
                     DateModified = DateTime.Now,
                     IsActive = true
                 });
+
             }
 
         }
+        
+
 
         public void Dispose()
         {
             IsDisposed = true;
         }
+
+        //internal void SaveChanges()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
